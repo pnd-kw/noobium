@@ -1,17 +1,24 @@
 import Link from "next/link";
 import { MdSearch } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import Button from "./Button";
 import AccountDropdown from "./AccountDropdown";
+
 
 type Props = {};
 
 const NavBar: React.FC<Props> = () => {
   const [keyword, setKeyword] = useState("");
   const [isDropdownOpen, setIsDropDownOpen] = useState(false);
+  const router = useRouter()
 
   const isLoggedIn = true;
+
+  useEffect(() => {
+    setKeyword(router.query.keyword as string || '')
+  }, [router.query.keyword])
 
   return (
     <header className="h-16 border-b border-slate-200 flex items-center justify-between px-24">
@@ -27,6 +34,11 @@ const NavBar: React.FC<Props> = () => {
           placeholder="Search"
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              router.push(`/search?keyword=${keyword}`);
+            }
+          }}
         />
       </div>
 

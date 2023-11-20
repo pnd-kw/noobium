@@ -3,16 +3,10 @@ import Category from "@/components/Category";
 import NavBar from "@/components/Navbar";
 import { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
-const Home: NextPage = () => {
-  const categories = [...Array(10)].map((_, index) => {
-    return {
-      id: index + 1,
-      slug: "technology",
-      label: "Technology",
-    };
-  });
+const SearchPage: NextPage = () => {
+  const router = useRouter();
   const articles = [...Array(4)].map((_, index) => {
     return {
       id: index + 1,
@@ -32,23 +26,17 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Noobium</title>
+        <title>Results for "{router.query.keyword}"| Noobium</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <NavBar />
       <div className="w-[720px] mx-auto py-24">
         <div className="mb-16">
-          <p className="font-sans text-slate-900 text-sm mb-4">
-            Your Categories
+          <p className="font-sans font-bold text-slate-400 mb-3">Results for</p>
+          <p className="font-sans font-bold text-slate-900 text-5xl">
+            {router.query.keyword}
           </p>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <Link key={category.id} href={`./categories/${category.slug}`}>
-                <Category label={category.label} />
-              </Link>
-            ))}
-          </div>
         </div>
         {articles.map((article) => (
           <Article
@@ -67,4 +55,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default SearchPage;
