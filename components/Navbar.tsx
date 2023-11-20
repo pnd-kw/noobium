@@ -47,7 +47,7 @@ const NavBar: React.FC<Props> = () => {
           <button onClick={() => setIsDropDownOpen(!isDropdownOpen)}>
             <img
               className="w-10 h-10 rounded-full object-cover"
-              src="images/dummy-avatar.png"
+              src="/images/dummy-avatar.png"
               alt="John Doe"
             />
           </button>
