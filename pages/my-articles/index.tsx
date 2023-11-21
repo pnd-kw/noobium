@@ -49,6 +49,7 @@ const MyArticlesPage: NextPage = () => {
             title={article.title}
             content={article.content}
             url={`/articles/${article.slug}`}
+            editUrl={`/my-articles/${article.slug}`}
             thumbnail={article.thumbnail}
             category={article.category}
             date={article.date}
