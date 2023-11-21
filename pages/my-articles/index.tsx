@@ -1,6 +1,5 @@
 import Article from "@/components/Article";
 import Button from "@/components/Button";
-import Category from "@/components/Category";
 import NavBar from "@/components/Navbar";
 import { NextPage } from "next";
 import Head from "next/head";
